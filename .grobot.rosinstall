@@ -1,0 +1,12 @@
+- git:
+    local-name: turtlebot3_msgs
+    uri: 'https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git'
+    version: master
+- git:
+    local-name: turtlebot3
+    uri: 'https://github.com/ROBOTIS-GIT/turtlebot3.git'
+    version: master
+- git:
+    local-name: grobot
+    uri: 'https://github.com/nlamprian/grobot.git'
+    version: master
