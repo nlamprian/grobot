@@ -1,0 +1,31 @@
+<launch>
+  <arg name="world_name" default="$(find grobot_gazebo)/worlds/example.world" />
+  <arg name="model" default="waffle" />
+  <arg name="x" default="4.95" />
+  <arg name="y" default="1.10" />
+  <arg name="yaw" default="-2.65" />
+  <arg name="start_rviz" default="true" />
+  <arg name="rviz_config" default="$(find grobot_bringup)/rviz/bringup.rviz" />
+
+  <!-- Launch gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="true" />
+    <arg name="verbose" value="false" />
+    <arg name="debug" value="false" />
+  </include>
+
+  <!-- Load robot description to the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <!-- Spawn robot model in gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model turtlebot3_$(arg model) -x $(arg x) -y $(arg y) -Y $(arg yaw) -param robot_description" />
+
+  <!-- Start robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Start rviz -->
+  <node if="$(arg start_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" />
+</launch>

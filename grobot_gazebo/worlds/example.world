@@ -1,0 +1,58 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <name>building</name>
+      <uri>model://building</uri>
+      <pose frame=''>0.941157 -0.334956 0 0 -0 0</pose>
+    </include>
+    <include>
+      <name>box_z=0.5m</name>
+      <uri>model://box_z=0.5m</uri>
+      <pose frame=''>-3.26157 4.02790 0 0 -0 0</pose>
+    </include>
+    <include>
+      <name>oak_tree</name>
+      <uri>model://oak_tree</uri>
+      <pose frame=''>-2.61035 -4.32355 0 0 -0 0</pose>
+    </include>
+    <include>
+      <name>cinder_block</name>
+      <uri>model://cinder_block</uri>
+      <pose frame=''>-1.98915 4.41578 0 0 -0 0</pose>
+    </include>
+    <include>
+      <name>cardboard_box_0</name>
+      <uri>model://cardboard_box</uri>
+      <pose frame=''>0.61689 -4.93546 0.15 0 -0 0</pose>
+    </include>
+    <include>
+      <name>cardboard_box_1</name>
+      <uri>model://cardboard_box</uri>
+      <pose frame=''>2.00053 -4.93546 0.15 0 -0 0</pose>
+    </include>
+    <include>
+      <name>jersey_barrier_0</name>
+      <uri>model://jersey_barrier</uri>
+      <pose frame=''>4.10862 -1.10365 0 0 -0 0</pose>
+    </include>
+    <include>
+      <name>jersey_barrier_1</name>
+      <uri>model://jersey_barrier</uri>
+      <pose frame=''>2.67185 2.63868 0 0 -0 1.5707</pose>
+    </include>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>12.804 6.59761 20.6782 0 0.963643 -2.65182</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

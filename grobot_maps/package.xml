@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>grobot_maps</name>
+  <version>0.0.0</version>
+  <description>The grobot_maps package</description>
+
+  <author email="nlamprian@gmail.com">Nick Lamprianidis</author>
+  <maintainer email="nlamprian@gmail.com">Nick Lamprianidis</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>

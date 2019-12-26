@@ -1,0 +1,34 @@
+<launch>
+  <arg name="world_name" default="$(find grobot_gazebo)/worlds/example.world" />
+  <arg name="model" default="waffle" />
+  <arg name="x" default="4.95" />
+  <arg name="y" default="1.10" />
+  <arg name="yaw" default="-2.65" />
+  <arg name="map_file" default="$(find grobot_maps)/maps/example_world.yaml" />
+  <arg name="rviz_config" default="$(find grobot_bringup)/rviz/navigation.rviz" />
+
+  <!-- Launch turtlebot3 bringup -->
+  <include file="$(find grobot_bringup)/launch/bringup.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="model" value="$(arg model)" />
+    <arg name="x" value="$(arg x)" />
+    <arg name="y" value="$(arg y)" />
+    <arg name="yaw" value="$(arg yaw)" />
+    <arg name="rviz_config" value="$(arg rviz_config)" />
+  </include>
+
+  <!-- Start map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Start localization -->
+  <include file="$(find grobot_bringup)/launch/includes/amcl.xml">
+    <arg name="initial_pose_x" value="$(arg x)" />
+    <arg name="initial_pose_y" value="$(arg y)" />
+    <arg name="initial_pose_a" value="$(arg yaw)" />
+  </include>
+
+  <!-- Start navigation -->
+  <include file="$(find grobot_bringup)/launch/includes/move_base.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+</launch>

@@ -1,0 +1,16 @@
+<launch>
+  <arg name="world_name" default="$(find grobot_gazebo)/worlds/example.world" />
+  <arg name="model" default="waffle" />
+
+  <!-- Launch turtlebot3 bringup -->
+  <include file="$(find grobot_bringup)/launch/bringup.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="model" value="$(arg model)" />
+    <arg name="rviz_config" value="$(find grobot_bringup)/rviz/mapping.rviz" />
+  </include>
+
+  <!-- Start mapping -->
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_gmapping.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+</launch>

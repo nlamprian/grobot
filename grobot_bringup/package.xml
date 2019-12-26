@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>grobot_bringup</name>
+  <version>0.0.0</version>
+  <description>The grobot_bringup package</description>
+
+  <author email="nlamprian@gmail.com">Nick Lamprianidis</author>
+  <maintainer email="nlamprian@gmail.com">Nick Lamprianidis</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>navigation</exec_depend>
+  <exec_depend>gmapping</exec_depend>
+  <exec_depend>turtlebot3_bringup</exec_depend>
+  <exec_depend>turtlebot3_slam</exec_depend>
+  <exec_depend>turtlebot3_example</exec_depend>
+  <exec_depend>grobot_gazebo</exec_depend>
+  <exec_depend>grobot_maps</exec_depend>
+  <exec_depend>grobot_utilities</exec_depend>
+
+  <export>
+  </export>
+</package>

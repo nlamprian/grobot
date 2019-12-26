@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>grobot_utilities</name>
+  <version>0.0.0</version>
+  <description>The grobot_utilities package</description>
+
+  <author email="nlamprian@gmail.com">Nick Lamprianidis</author>
+  <maintainer email="nlamprian@gmail.com">Nick Lamprianidis</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>gazebo_msgs</build_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
+
+  <export>
+  </export>
+</package>
