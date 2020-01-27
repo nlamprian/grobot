@@ -4,7 +4,24 @@ project(grobot_utilities)
 find_package(catkin REQUIRED
   COMPONENTS
     roscpp
+    message_generation
     gazebo_msgs
+    actionlib
+    tf
+)
+
+################################################
+## Declare ROS messages, services and actions ##
+################################################
+
+add_action_files(
+  FILES
+    Patrol.action
+)
+
+generate_messages(
+  DEPENDENCIES
+    actionlib_msgs
 )
 
 ###################################
@@ -13,7 +30,10 @@ find_package(catkin REQUIRED
 
 catkin_package(
   DEPENDS
+    message_runtime
     gazebo_msgs
+    actionlib
+    tf
 )
 
 ###########
@@ -40,4 +60,12 @@ install(
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(
+  PROGRAMS
+    scripts/patrol_client
+    scripts/patrol_server
+    scripts/spawn_marker_on_robot
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

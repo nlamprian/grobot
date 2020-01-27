@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>grobot_utilities</name>
+  <name>grobot_navigation</name>
   <version>0.0.0</version>
-  <description>The grobot_utilities package</description>
+  <description>The grobot_navigation package</description>
 
   <author email="nlamprian@gmail.com">Nick Lamprianidis</author>
   <maintainer email="nlamprian@gmail.com">Nick Lamprianidis</maintainer>
@@ -11,13 +11,14 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
-  <build_depend>message_generation</build_depend>
-  <build_depend>gazebo_msgs</build_depend>
+  <build_depend>fiducial_msgs</build_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <build_depend>std_srvs</build_depend>
   <build_depend>actionlib</build_depend>
   <build_depend>tf</build_depend>
-  <exec_depend>rospy</exec_depend>
-  <exec_depend>message_runtime</exec_depend>
-  <exec_depend>gazebo_msgs</exec_depend>
+  <exec_depend>fiducial_msgs</exec_depend>
+  <exec_depend>move_base_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
   <exec_depend>actionlib</exec_depend>
   <exec_depend>tf</exec_depend>
 

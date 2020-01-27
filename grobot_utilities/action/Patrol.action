@@ -1,0 +1,7 @@
+float32 radius
+bool clockwise
+uint32 num_patrols
+---
+bool success
+---
+uint32 completed_patrols

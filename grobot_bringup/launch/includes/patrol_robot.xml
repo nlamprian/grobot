@@ -1,0 +1,46 @@
+<launch>
+  <arg name="name" default="patrol_robot" />
+  <arg name="model" default="burger" />
+  <arg name="map_file" default="$(find grobot_maps)/maps/example_world.yaml" />
+  <arg name="x" default="0.0" />
+  <arg name="y" default="0.0" />
+  <arg name="yaw" default="0.0" />
+  <arg name="radius" default="1.0" />
+  <arg name="clockwise" default="false" />
+  <arg name="has_marker" default="false" />
+
+  <group ns="$(arg name)">
+    <param name="tf_prefix" value="$(arg name)" />
+
+    <!-- Load robot description to the parameter server -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+    <!-- Spawn robot model in gazebo -->
+    <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg name) -x $(arg x) -y $(arg y) -Y $(arg yaw) -param robot_description -wait ground_plane" />
+
+    <!-- Start robot state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+      <param name="tf_prefix" value="$(arg name)" />
+    </node>
+
+    <!-- Start map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Start localization -->
+    <include file="$(find grobot_bringup)/launch/includes/amcl.xml">
+      <arg name="tf_prefix" value="$(arg name)" />
+      <arg name="initial_pose_x" value="$(arg x)" />
+      <arg name="initial_pose_y" value="$(arg y)" />
+      <arg name="initial_pose_a" value="$(arg yaw)" />
+    </include>
+
+    <!-- Start patrol server -->
+    <node name="patrol_server" pkg="grobot_utilities" type="patrol_server" output="screen" />
+
+    <!-- Start patrol client -->
+    <node name="patrol_client" pkg="grobot_utilities" type="patrol_client" output="screen" args="$(arg radius) $(arg clockwise)" />
+
+    <!-- Spawn marker on the robot -->
+    <node if="$(arg has_marker)" name="spawn_marker_on_robot" pkg="grobot_utilities" type="spawn_marker_on_robot" output="screen" />
+  </group>
+</launch>

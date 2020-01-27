@@ -47,6 +47,8 @@
       <pose frame=''>2.67185 2.63868 0 0 -0 1.5707</pose>
     </include>
 
+    <plugin name="ros_link_attacher_plugin" filename="libgazebo_ros_link_attacher.so" />
+
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>12.804 6.59761 20.6782 0 0.963643 -2.65182</pose>

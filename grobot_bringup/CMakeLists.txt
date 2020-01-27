@@ -19,6 +19,8 @@ catkin_package(
     grobot_gazebo
     grobot_maps
     grobot_utilities
+    grobot_navigation
+    aruco_detect
 )
 
 catkin_add_env_hooks(

@@ -1,0 +1,48 @@
+<launch>
+  <arg name="world_name" default="$(find grobot_gazebo)/worlds/example.world" />
+  <arg name="model" default="waffle" />
+  <arg name="map_file" default="$(find grobot_maps)/maps/example_world.yaml" />
+  <arg name="exploration_strategy" default="rotate" doc="[move_to_target, rotate]" />
+
+  <!-- Launch turtlebot3 bringup and navigation -->
+  <include file="$(find grobot_bringup)/launch/navigation.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="model" value="$(arg model)" />
+    <arg name="map_file" value="$(arg map_file)" />
+    <arg name="rviz_config" value="$(find grobot_bringup)/rviz/visual_servoing.rviz" />
+  </include>
+
+  <!-- Start marker detector -->
+  <node name="aruco_detect" pkg="aruco_detect" type="aruco_detect">
+    <param name="image_transport" value="compressed" />
+    <param name="publish_images" value="true" />
+    <param name="fiducial_len" value="0.15" />
+    <param name="dictionary" value="0" />
+    <param name="do_pose_estimation" value="true" />
+    <param name="ignore_fiducials" value="" />
+    <param name="fiducial_len_override" value="" />
+    <remap from="/camera/compressed" to="/camera/rgb/image_raw/compressed" />
+    <remap from="/camera_info" to="/camera/rgb/camera_info" />
+  </node>
+
+  <!-- Start marker follower -->
+  <node name="follow_marker" pkg="grobot_navigation" type="follow_marker" clear_params="true" output="screen">
+    <param name="marker_id" value="0" />
+    <rosparam param="marker_to_target_pose">{x: -0.8, y: 0.0}</rosparam>
+    <rosparam if="$(eval exploration_strategy=='move_to_target')"
+              param="exploration">{strategy: move_to_target, robot_frame: base_footprint, target_pose: {x: 1.0, y: 0.0, yaw: 3.1416, frame_id: map}}</rosparam>
+    <rosparam if="$(eval exploration_strategy=='rotate')"
+              param="exploration">{strategy: rotate, robot_frame: base_footprint}</rosparam>
+  </node>
+
+  <!-- Load dynamic target robot -->
+  <include file="$(find grobot_bringup)/launch/includes/patrol_robot.xml">
+    <arg name="name" value="karl" />
+    <arg name="x" value="-2.0" />
+    <arg name="y" value="2.0" />
+    <arg name="map_file" value="$(arg map_file)" />
+    <arg name="radius" value="1.5" />
+    <arg name="clockwise" value="true" />
+    <arg name="has_marker" value="true" />
+  </include>
+</launch>

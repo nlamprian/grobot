@@ -18,6 +18,8 @@
   <exec_depend>grobot_gazebo</exec_depend>
   <exec_depend>grobot_maps</exec_depend>
   <exec_depend>grobot_utilities</exec_depend>
+  <exec_depend>grobot_navigation</exec_depend>
+  <exec_depend>aruco_detect</exec_depend>
 
   <export>
   </export>

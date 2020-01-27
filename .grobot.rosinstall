@@ -7,6 +7,10 @@
     uri: 'https://github.com/ROBOTIS-GIT/turtlebot3.git'
     version: master
 - git:
+    local-name: gazebo_ros_link_attacher
+    uri: 'https://github.com/mehditlili/gazebo_ros_link_attacher.git'
+    version: master
+- git:
     local-name: grobot
     uri: 'https://github.com/nlamprian/grobot.git'
     version: master
